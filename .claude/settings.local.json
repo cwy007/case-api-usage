@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python \"1-情感分析-Qwen.py\")"
+    ]
+  }
+}
