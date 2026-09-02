@@ -2,6 +2,10 @@ import json
 import os
 import dashscope
 from dashscope.api_entities.dashscope_response import Role
+from dotenv import load_dotenv
+
+# 加载 .env 文件中的环境变量
+load_dotenv()
 
 # 从环境变量中，获取 DASHSCOPE_API_KEY
 api_key = os.environ.get('DASHSCOPE_API_KEY')
@@ -45,19 +49,19 @@ def get_response(messages):
 def run_conversation():
     query = "大连的天气怎样"
     messages=[{"role": "user", "content": query}]
-    
+
     # 得到第一次响应
     response = get_response(messages)
     if not response or not response.output:
         print("获取响应失败")
         return None
-        
+
     print('response=', response)
-    
+
     message = response.output.choices[0].message
     messages.append(message)
     print('message=', message)
-    
+
     # Step 2, 判断用户是否要call function
     if hasattr(message, 'function_call') and message.function_call:
         function_call = message.function_call
@@ -73,13 +77,13 @@ def run_conversation():
         print('tool_info=', tool_info)
         messages.append(tool_info)
         print('messages=', messages)
-        
+
         #Step 4, 得到第二次响应
         response = get_response(messages)
         if not response or not response.output:
             print("获取第二次响应失败")
             return None
-            
+
         print('response=', response)
         message = response.output.choices[0].message
         return message

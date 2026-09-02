@@ -15,6 +15,11 @@ import os
 import random
 import dashscope
 from dashscope.api_entities.dashscope_response import Role
+from dotenv import load_dotenv
+
+# 加载 .env 文件中的环境变量
+load_dotenv()
+
 # 从环境变量中，获取 DASHSCOPE_API_KEY
 api_key = os.environ.get('DASHSCOPE_API_KEY')
 dashscope.api_key = api_key
@@ -43,7 +48,7 @@ def get_response(messages):
         result_format='message'  # 将输出设置为message形式
     )
     return response
-    
+
 current_locals = locals()
 current_locals
 
@@ -56,7 +61,7 @@ tools = [
                 "parameters": {
                 },
                 "required": []
-            }                
+            }
         }
     ]
 
@@ -79,7 +84,7 @@ while True:
 
     if response.output.choices[0].finish_reason == 'stop':
         break
-    
+
     # 判断用户是否要call function
     if message.tool_calls:
         # 获取fn_name, fn_arguments

@@ -8,6 +8,11 @@ import json
 import os
 import dashscope
 from dashscope.api_entities.dashscope_response import Role
+from dotenv import load_dotenv
+
+# 加载 .env 文件中的环境变量
+load_dotenv()
+
 # 从环境变量中，获取 DASHSCOPE_API_KEY
 api_key = os.environ.get('DASHSCOPE_API_KEY')
 dashscope.api_key = api_key

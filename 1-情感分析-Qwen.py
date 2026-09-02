@@ -8,6 +8,10 @@ import json
 import os
 import dashscope
 from dashscope.api_entities.dashscope_response import Role
+from dotenv import load_dotenv
+
+# 加载 .env 文件中的环境变量
+load_dotenv()
 
 # 从环境变量中，获取 DASHSCOPE_API_KEY
 api_key = os.environ.get('DASHSCOPE_API_KEY')
@@ -21,7 +25,7 @@ def get_response(messages):
         result_format='message'  # 将输出设置为message形式
     )
     return response
-    
+
 review = '这款音效特别好 给你意想不到的音质。'
 messages=[
     {"role": "system", "content": "你是一名舆情分析师，帮我判断产品口碑的正负向，回复请用一个词语：正向 或者 负向"},

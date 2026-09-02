@@ -6,12 +6,17 @@
 
 import os
 from openai import OpenAI
+from dotenv import load_dotenv
+
+# 加载 .env 文件中的环境变量
+load_dotenv()
+
 # 从环境变量中，获取 DASHSCOPE_API_KEY
 api_key = os.environ.get('DASHSCOPE_API_KEY')
 
 client = OpenAI(
     # 若没有配置环境变量，请用百炼API Key将下行替换为：api_key="sk-xxx",
-    api_key=api_key, 
+    api_key=api_key,
     base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",  # 填写DashScope服务的base_url
 )
 completion = client.chat.completions.create(
@@ -22,6 +27,6 @@ completion = client.chat.completions.create(
     extra_body={
         "enable_search": True
     }
-    )
-print(completion.model_dump_json())
+)
+print(completion.model_dump_json(indent=2))
 
