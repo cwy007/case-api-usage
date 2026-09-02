@@ -1,0 +1,11 @@
+[project]
+name = "case-api-usage"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13.7"
+dependencies = [
+    "dashscope>=1.27.3",
+    "openai>=3.7.0",
+    "python-dotenv>=1.2.3",
+]
